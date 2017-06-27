@@ -264,7 +264,7 @@ public class SpaceTabLayout extends RelativeLayout {
      * @param fragmentManager needed for the fragment transactions
      * @param fragments       fragments to be displayed
      */
-    public void initialize(ViewPager viewPager, FragmentManager fragmentManager, List<Fragment> fragments) {
+    public void initialize(final CustomViewPager viewPager, FragmentManager fragmentManager, List<Fragment> fragments) {
         if (numberOfTabs < fragments.size() || numberOfTabs > fragments.size())
             throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
         viewPager.setAdapter(new PagerAdapter(fragmentManager, fragments));
@@ -328,7 +328,6 @@ public class SpaceTabLayout extends RelativeLayout {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
 
