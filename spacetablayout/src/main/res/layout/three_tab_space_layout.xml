@@ -29,6 +29,16 @@
         android:scaleType="center"
         android:src="@drawable/background2" />
 
+   <RelativeLayout
+       android:layout_width="96dp"
+       android:layout_height="wrap_content"
+       android:layout_alignParentBottom="true">
+       <View
+           android:layout_width="wrap_content"
+           android:layout_height="5dp"
+           android:layout_alignParentBottom="true"
+           android:background="@color/colorAccent"/>
+   </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/selectedTabLayout"
@@ -44,13 +54,12 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:scaleType="center"
-            android:src="@drawable/background" />
-
-
+            android:src="@drawable/circle" />
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="@dimen/action_button_size"
             android:layout_height="@dimen/action_button_size"
+            android:visibility="gone"
             android:layout_centerInParent="true" />
     </RelativeLayout>
 
@@ -66,5 +75,4 @@
         app:tabBackground="@android:color/transparent"
         app:tabGravity="fill"
         app:tabMode="fixed" />
-
 </RelativeLayout>

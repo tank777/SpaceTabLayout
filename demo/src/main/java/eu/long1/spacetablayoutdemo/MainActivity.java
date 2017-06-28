@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (SpaceTabLayout) findViewById(R.id.spaceTabLayout);
 
         tabLayout.initialize(viewPager, getSupportFragmentManager(), fragmentList);
-
         tabLayout.setTabThreeOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

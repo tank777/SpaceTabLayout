@@ -2,9 +2,12 @@ package eu.long1.spacetablayoutdemo;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import static android.content.ContentValues.TAG;
 
 
 public class FragmentC extends Fragment {
@@ -15,4 +18,9 @@ public class FragmentC extends Fragment {
         return inflater.inflate(R.layout.fragment_c, container, false);
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        Log.e(TAG, "setUserVisibleHint C: "+isVisibleToUser);
+        super.setUserVisibleHint(isVisibleToUser);
+    }
 }

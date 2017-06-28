@@ -39,9 +39,11 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -380,6 +382,14 @@ public class SpaceTabLayout extends RelativeLayout {
         selectedTabLayout.bringToFront();
         tabLayout.setSelectedTabIndicatorHeight(0);
         setAttrs();
+
+        LinearLayout tabStrip = ((LinearLayout)tabLayout.getChildAt(0));
+        tabStrip.setEnabled(false);
+        for(int i = 0; i < tabStrip.getChildCount(); i++) {
+            if(i==2)
+            tabStrip.getChildAt(i).setClickable(false);
+        }
+
     }
 
 
@@ -579,7 +589,7 @@ public class SpaceTabLayout extends RelativeLayout {
 
     public void setTabColor(@ColorInt int backgroundColor) {
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(backgroundColor, PorterDuff.Mode.SRC_ATOP);
-        Drawable image = ContextCompat.getDrawable(getContext(), R.drawable.background);
+        Drawable image = ContextCompat.getDrawable(getContext(), R.drawable.circle);
         Drawable image2 = ContextCompat.getDrawable(getContext(), R.drawable.background2);
         image.setColorFilter(porterDuffColorFilter);
         image2.setColorFilter(porterDuffColorFilter);
