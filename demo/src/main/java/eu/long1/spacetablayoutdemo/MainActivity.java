@@ -10,15 +10,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import eu.long1.spacetablayout.ClickEvent;
 import eu.long1.spacetablayout.CustomViewPager;
 import eu.long1.spacetablayout.SpaceTabLayout;
 
 public class MainActivity extends AppCompatActivity {
     SpaceTabLayout tabLayout;
 
+    private EventBus bus = EventBus.getDefault();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplication(), "" + tabLayout.getCurrentPosition(), Toast.LENGTH_SHORT).show();
             }
         });
+        bus.register(this);
+    }
+    @Override
+    protected void onDestroy() {
+        // Unregister
+        bus.unregister(this);
+        super.onDestroy();
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(ClickEvent event){
+        Toast.makeText(this, String.valueOf(event.getPosition()), Toast.LENGTH_SHORT).show();
     }
 }

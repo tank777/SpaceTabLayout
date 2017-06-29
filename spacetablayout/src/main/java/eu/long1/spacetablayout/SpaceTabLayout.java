@@ -47,6 +47,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,6 +116,8 @@ public class SpaceTabLayout extends RelativeLayout {
 
     private static final String CURRENT_POSITION_SAVE_STATE = "buttonPosition";
 
+    private ClickEvent clickEvent;
+    private EventBus bus = EventBus.getDefault();
     public SpaceTabLayout(Context context) {
         super(context);
         init();
@@ -204,7 +208,8 @@ public class SpaceTabLayout extends RelativeLayout {
                             actionButton.setOnClickListener(new OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    tabThreeOnClickListener.onClick(getTabThreeView());
+                                    clickEvent = new ClickEvent(2);
+                                    bus.post(clickEvent);
                                 }
                             });
                             break;
@@ -308,16 +313,19 @@ public class SpaceTabLayout extends RelativeLayout {
 //                tabs.get(position).getCustomView().setAlpha(0);
 //                moveTab(tabSize, position);
                 currentPosition = position;
+                clickEvent = new ClickEvent(position);
+                bus.post(clickEvent);
                 switch (position) {
                     case 0:
                         Log.e(TAG, "onPageSelected: "+position);
+
                         break;
                     case 1:
                         Log.e(TAG, "onPageSelected: "+position);
                         break;
                     case 2:
                         Log.e(TAG, "onPageSelected: "+position);
-                        tabThreeOnClickListener.onClick(getTabThreeView());
+
                         break;
                     case 3:
                         Log.e(TAG, "onPageSelected: "+position);
